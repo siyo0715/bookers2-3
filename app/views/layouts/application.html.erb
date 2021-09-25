@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="header">
+    <header>
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/"><span>Bookers</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="">
+                <%= link_to user_path(current_user), class:"btn btn-link text-light" do %>
+                <span class="fas fa-home" aria-hidden="true"> Home</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to users_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-users" aria-hidden="true"> Users</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to books_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-book-open" aria-hidden="true"> Books</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to destroy_user_session_path, method: :delete, class:"btn btn-link text-light" do %>
+                <span class="fas fa-sign-out-alt" aria-hidden="true"> Logout</span>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="">
+                <%= link_to root_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-home" aria-hidden="true"> Home</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to home_about_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-link" aria-hidden="true"> About</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to new_user_registration_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-user-plus" aria-hidden="true"> sign up</span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to new_user_session_path, class:"btn btn-link text-light" do %>
+                <span class="fas fa-sign-in-alt" aria-hidden="true"> login</span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+      </div>
+    </header>
+    <main>
+      <p class="notice"><%= notice %></p>
+
+      <%= yield %>
+
+    </main>
+        <footer>
+           <div class='container mt-5'>
+  	       <div class='row'>
+    	      <div class='mx-auto'>
+    		    <p>CopyRight Infratop.inc</p>
+    	      </div>
+            </div>
+          </div>
+        </footer>
+  </body>
+</html>
