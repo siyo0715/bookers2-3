@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @books = @user.books
     #@userに関連付けされたやつを@booksに渡している
   end
-
+  
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
