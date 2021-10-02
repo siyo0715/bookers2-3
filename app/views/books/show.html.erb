@@ -19,21 +19,13 @@
         <td><%= link_to @showbook.title,book_path(@showbook.id) %></td>
         <td><%= @showbook.body %></td>
 
+        <td class="favorite-showbtn_">
+          <%= render 'favorites/favorite-indexbtn', book: @showbook%>
+        </td>
         <% if @showbook.user.id == current_user.id %>
            <td><%= link_to 'Edit',edit_book_path(@showbook),class: "button is btn btn-success" %></td>
            <td><%= link_to 'Destroy', book_path(@showbook), method: :delete, class: "btn btn-danger", "data-confirm" => "Are you sure?" %></td>
         <% end %>
-        <td>
-          <% if @showbook.already_favorited?(current_user) %>
-            <%= link_to book_favorites_path(@showbook), method: :delete do %>
-            <i class="far fa-heart" aria-hidden="true" style="color: red"><%= @showbook.favorites.count %></i>
-          <% end %>
-          <% else %>
-            <%= link_to book_favorites_path(@showbook.id), method: :post do %>
-            <i class="far fa-heart" aria-hidden="true"><%= @showbook.favorites.count %></i>
-            <% end %>
-          <% end %>
-        </td>
       </tr>
       </table>
       <table>
